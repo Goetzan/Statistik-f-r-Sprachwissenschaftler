@@ -1,6 +1,8 @@
-% Hausaufgabe 03
+% Hausaufgabe 03a
 % Antonia Götz <goetzan@students.uni-marburg.de>
 % 2014-04-25
+# Lizenz
+Diese Datein darf weiter als Beispiel genutzt werden.
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
