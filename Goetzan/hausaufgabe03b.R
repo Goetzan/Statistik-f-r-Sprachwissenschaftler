@@ -119,7 +119,7 @@ print (modus)
 
 # Nein, es kann nicht nur einen Modalwert geben. Neben der unimodalen Verteilung, 
 # gibt es außerdem bimodale oder sogar multimodale Verteilungen.
-# Diese sind nur mehrere Peaks gekennzeichnet. Da wir allerdings in unserer Rechnung
+# Diese sind durch mehrere Peaks gekennzeichnet. Da wir allerdings in unserer Rechnung
 # nur einen Modalwert haben, ist der Code korrekt.
 
 # Als Abscheid ein Beispiel mit der Darstellung Frequenzdaten mit Säulendiagramm
