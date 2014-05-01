@@ -19,7 +19,7 @@
 library(ggplot2)
 
 # und danach die Daten:
-dat <- read.table("body_dim_long.tab",header=TRUE) 
+dat <- read.table("Data//body_dim_long.tab",header=TRUE)
 
 # Wir haben im Kurs die Verteilung der Variabel weight angeschaut. In Skripten
 # werden Ergebnisse nicht automatich dargestellt, sondern nur dann, wenn ein
@@ -28,14 +28,14 @@ dat <- read.table("body_dim_long.tab",header=TRUE)
 # ist. Wie bei anderen Berechnungen können wir den Output von ggplot einer
 # Variabel zuweisen. Danach müssen wir nur den Variabelnamen in die Klammer von
 # print() einpacken.
-#weight.grafik <- ggplot(data=dat,aes(x=weight)) + geom_histogram(aes(y=..density..),fill="white",color="black") + geom_density()
-#print(weight.grafik)
+weight.grafik <- ggplot(data=dat,aes(x=weight)) + geom_histogram(aes(y=..density..),fill="white",color="black") + geom_density()
+print(weight.grafik)
 
 # Wenn wir verschiedene Grafiken mit einem Datenzsatz machen möchten, ist es
 # nervig, wenn wir den gemeinsamen Teil immer wieder eingeben müssen. Auch Teile
 # von ggplot-Grafiken können einer Variabel zugewiesen werden:
-#weight.grafik.basis <- ggplot(data=dat,aes(x=weight))
-#print(weight.grafik.basis + geom_histogram())
+weight.grafik.basis <- ggplot(data=dat,aes(x=weight))
+print(weight.grafik.basis + geom_histogram())
 #print(weight.grafik.basis + geom_density())
 
 # Wir haben auch mal die qplot()-Funktion gesehen. Sie ergibt eigentlich das
