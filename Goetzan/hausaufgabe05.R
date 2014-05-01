@@ -2,6 +2,7 @@
 # Antonia Götz <goetzan@students.uni-marburg.de>
 # 2014-05-01
 # Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+# Diese Datei darf weiter als Beispiel genutzt werden.
 
 # Sie sollten die Datei auch in Ihren Ordner kopieren und einen Commit machen, 
 # bevor Sie die Kopie weiter anpassen! Vergessen Sie dabei nicht, Namen, Datum 
@@ -191,6 +192,6 @@ speech.sd <- sqrt(varianz.z)
 print(speech.sd)
 
 # Berichten Sie jetzt die Mittelwerte und Standardabweichungen für die drei Gruppen. Die erste Gruppe steht hier als Muster:
-#print( paste("Studiengang: Klinische Linguistik","Mean:",mean(klinisch$height),"SD:",klinisch.sd) )
-#CODE_HIER
-
+print( paste("Studiengang: Klinische Linguistik","Mean:",mean(klinisch$height),"SD:",klinisch.sd) )
+print( paste("Studiengang: Linguistik Kognition und Kommunikation","Mean:",mean(linkk$height),"SD:",linkk.sd) )
+print( paste("Studiengang: Speech Science","Mean:",mean(speech$height),"SD:",speech.sd) )
