@@ -109,7 +109,7 @@ print(frauen.studiengang.bw)
 # sehr dicht bei einander. 
 
 # Wir können natürlich auch die Dichte anschauen:
-frauen.studiengang.dichte <- ggplot(data=frauen,aes(x=major)) + geom_density(aes(x=height,color=major))
+frauen.studiengang.dichte <- ggplot(data=frauen,aes(x=major)) + geom_density(aes(x=height,color=major,fill=major),alpha=0.5)
 print(frauen.studiengang.dichte)
 
 # Haben Sie den gleichen Eindruck wie bei Box-Whisker bekommen? Unterscheiden
