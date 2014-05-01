@@ -65,13 +65,13 @@ weight.bw.sex <- weight.grafik.basis + geom_boxplot(aes(x=sex,y=weight))
 print(weight.bw.sex)
 
 # Und als Erinnerung können wir auch ähnliches mit der Dichte machen:
-print( weight.grafik.basis + geom_density(aes(color=sex,fill=sex),alpha=0.5) )
+print(weight.grafik.basis + geom_density(aes(color=sex,fill=sex),alpha=0.5) )
 
 # Aber jetzt haben wir uns Gewicht mehrmals angeschaut. Es wird Zeit, dass uns
 # auch Größe anschauen. Sind die Studenten mancher Studiengänge größer als die anderen?
 # Weil wir deutlich weniger Männer haben und es einen bekannten Unterschied in der Größe 
 # zwischen Männern und Frauen gibt, schließen wir erstmal die Männer aus:
-#frauen <- subset(dat, sex=="f")
+frauen <- subset(dat, sex=="f")
 
 # (Sie sollten sich wirklich überlegen, ob der Schritt "gut" ist. Haben wir 
 # dadurch unsre Ergebnisse verstellt? Sie müssen hier nichts schreiben, aber 
@@ -90,21 +90,27 @@ print( weight.grafik.basis + geom_density(aes(color=sex,fill=sex),alpha=0.5) )
 #ziehen kann. Dafür gibt es verschiedene Möglichkeiten; die Wahl bleibt Ihnen
 #überlassen. 
 #nur Frauen
-#frauen.studiengang.bw <- ggplot(data=frauen,aes(x=major)) + geom_boxplot(aes(x=major,y=height))
-#print(frauen.studiengang.bw)
+frauen.studiengang.bw <- ggplot(data=frauen,aes(x=major)) + geom_boxplot(aes(x=major,y=height))
+print(frauen.studiengang.bw)
 
 #alle
-alle.studiengang.bw <- ggplot(data=dat,aes(x=major)) + geom_boxplot(aes(x=major,y=height))
-print(alle.studiengang.bw)
+#alle.studiengang.bw <- ggplot(data=dat,aes(x=major)) + geom_boxplot(aes(x=major,y=height))
+#print(alle.studiengang.bw)
 
 # Sehen die Studiengänge anders aus? Wir müssen hier noch relativ vorrsichtig
 # sein, weil die Gruppen *unbalanziert* sind, d.h. die Gruppen sind
 # unterschiedlich groß. Aber wie sieht der Vergleich auf den ersten Blick aus?
 # (Keine explizite Antwort nötig, nur eine Überlegung.)
+# Für die M.A Germanistische Linguistik und other ist keine Interpretation möglich,
+# da nur eine bzw 2 Frauen gewertet werden (daher ist der Median bei other genau in
+# der Mitte). Die größte Streuung scheint es auf den ersten Blick im Studiengang 
+# Klinische Linguistik zu geben, die geringste Streuung dagegen im M.A. Speech Sciene.
+# Hier tritt ein Ausreißer bei einer Größe von 175 cm auf. Ansonsten liegen die Mediane
+# sehr dicht bei einander. 
 
 # Wir können natürlich auch die Dichte anschauen:
-#frauen.studiengang.dichte <- CODE_HIER
-#print(frauen.studiengang.dichte)
+frauen.studiengang.dichte <- ggplot(data=frauen,aes(x=major)) + geom_density(aes(x=height,color=major))
+print(frauen.studiengang.dichte)
 
 # Haben Sie den gleichen Eindruck wie bei Box-Whisker bekommen? Unterscheiden
 # sich die Gruppen?
