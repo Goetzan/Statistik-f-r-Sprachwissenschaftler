@@ -71,20 +71,27 @@ print( weight.grafik.basis + geom_density(aes(color=sex,fill=sex),alpha=0.5) )
 # auch Größe anschauen. Sind die Studenten mancher Studiengänge größer als die anderen?
 # Weil wir deutlich weniger Männer haben und es einen bekannten Unterschied in der Größe 
 # zwischen Männern und Frauen gibt, schließen wir erstmal die Männer aus:
-#frauen <- subset(dat, CODE_HIER)
+frauen <- subset(dat, sex=="f")
 
 # (Sie sollten sich wirklich überlegen, ob der Schritt "gut" ist. Haben wir 
 # dadurch unsre Ergebnisse verstellt? Sie müssen hier nichts schreiben, aber 
 # überlegen Sie sich wirklich, ob der Schritt sinnvoll war und was für Probeme 
 # er verursachen könnte. Sie könnten u.a. die folgenden Berechnungen und Plots
 # zweimal machen und schauen, wie sich die Ergebnisse geändert haben.)
+# Idee ob der Schritt sinnvoll ist: Kommt dadrauf an, wenn nur Frauen betrachtet
+# werden, muss dementsprechend auch die Fragestellung angepasst werden, da sonst
+# die Ergebnisse nicht der Fragestellung entsprechen und die Ergebnisse verfälscht
+# werden könnten.
 
 #Das erste, was wir machen, ist uns die Daten einfach als Box-Whisker-Diagramm 
 #darzustellen. (Box-Whisker zuerst, weil Sie das auch per Hand machen könnten, 
 #falls Sie unsicher sind, ob das Bild korrekt aussieht.) Hier und im Folgenden
 #sollten Sie die Plots so machen, damit man einen Vergleich zwischen den Gruppen
 #ziehen kann. Dafür gibt es verschiedene Möglichkeiten; die Wahl bleibt Ihnen
-#überlassen. frauen.studiengang.bw <- CODE_HIER print(frauen.studiengang.bw)
+#überlassen. 
+# nur Frauen
+frauen.studiengang.bw <- ggplot(data=frauen,aes(x=major)) + geom_boxplot(aes(x=major,y=height))
+print(frauen.studiengang.bw)
 
 # Sehen die Studiengänge anders aus? Wir müssen hier noch relativ vorrsichtig
 # sein, weil die Gruppen *unbalanziert* sind, d.h. die Gruppen sind
