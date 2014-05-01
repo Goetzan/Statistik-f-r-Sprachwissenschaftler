@@ -117,9 +117,9 @@ print(frauen.studiengang.dichte)
 # sich die Gruppen?
 # (Keine explizite Antwort nötig, nur eine Überlegung.)
 # Für den M.A Speech Science ergibt sich ein ähnliches Bild im Vergleich zum Boxplot.
-# Die höchste Dichte liegt etwa bei 168/169 cm, dies entspricht in etwa dem Median
-# Boxplotes. Allerdings erweckt der Ausreißer des Boxplotes, in der Dichte-Darstellung 
-# nicht den Eindruck eines Ausreißers. Die Größenverteilung der anderen Studiengänge
+# Die höchste Dichte liegt etwa bei 168/169 cm, dies entspricht in etwa dem Median des
+# Boxplotes. Allerdings erweckt der Ausreißer des Boxplotes, in der Dichte-Darstellung, 
+# nicht den Eindruck eines Ausreißers.
 # Jedoch ist ein Vergleich der Gruppen in der Dichte-Verteilung schwieriger, 
 # als bei einem Boxplot.
 
