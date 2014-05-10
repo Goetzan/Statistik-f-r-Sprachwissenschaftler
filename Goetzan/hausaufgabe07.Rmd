@@ -169,7 +169,7 @@ Um in dem besten 1% abzuschließen, muss man zumindest `r qnorm(0.99,mean=mu,sd=
 ## z-Transformation
 Bei der Überprüfung der Lehrqualität scheint es der Verwaltung, dass ein gewisser Dozent andere Noten als andere Dozenten vergibt. Es wird entschieden, dass der Notenspiegel bei den Teilnehmern in einem von seinen Kursen getestet wird, um zu schauen, ob er sich signifikant von der idealisierten Notenverteilung ($\mu=8,\sigma=3$) unterscheidet. Um zu zeigen, dass Gott $\alpha=0.06$ so viel liebt wie $\alpha=0.05$ `r citep("10.1037/0003-066X.44.10.1276")`, setzt die Verwaltung das Signikanzniveau auf 0.06. 
 
-Der kritische Wert für einen einseitigen $z$-Test ist (bei Aplha=0,06) `r qnorm(0.94)` (bei Alpha=0,05) `r qnorm(0.95)`.
+Der kritische Wert für einen einseitigen $z$-Test ist (bei Alpha=0,06) `r qnorm(0.94)` (bei Alpha=0,05) `r qnorm(0.95)`.
 
 Die kritischen Werte für einen zweiseitigen $z$-Test sind (bei Aplha=0,06) $\pm$ `r qnorm(0.97)` (bei Alpha=0,05) $\pm$ `r qnorm(0.975)`.
 
@@ -180,36 +180,52 @@ Bei Unsicherheiten ist es besser einen zweiseitigen z-Test auszuführen, da sons
 
 In einem kleinen Seminar mit 7 Studenten beträgt der Durchschnittswert 10. Unterscheidet sich der Notenspiegel von dem idealen? Berechnen Sie den $z$-Test:
 
-code_hier
+``` {r}
+z.n7 <- sqrt(7) * ((10 - 8)/3)
+print(z.n7)
 
-Das ist ein **_eins_von_signifikanter_insignifikanter_** Unterschied. 
+```
+
+Das ist ein **_insignifikanter_** Unterschied, da 1.764<1.8808. 
 
 In einer Vorlesung vom selben Dozenten mit 50 Teilnehmern beträgt der Durchschnittswert wieder 10. (Es scheint, dass der Dozent 10 besonders toll findet.) Berechnen Sie den $z$-Test:
 
-code_hier
+``` {r}
+z.n50 <- sqrt(50) * ((10 - 8)/3)
+print(z.n50)
 
-Das ist ein **_eins_von_signifikanter_insignifikanter_** Unterschied. 
+```
+
+Das ist ein **_signifikanter_** Unterschied, da 4.714>1.8808. 
 
 Ist die Benotung vom Dozenten weniger als ideal? 
 
 ### Ein anderer, böserer? Dozent
-Die Verwaltung ist auch auf einen anderen Dozenten aufmerksam geworden, weil manche Studenten behaupten, er würde zu streng benoten. (Welche Testart sollte man hier nutzen?)
+Die Verwaltung ist auch auf einen anderen Dozenten aufmerksam geworden, weil manche Studenten behaupten, er würde zu streng benoten. (Welche Testart sollte man hier nutzen?) Einseitiger z-Test
 
 In einem mittelgroßen Seminar mit 20 Studenten beträgt der Durchschnittswert 7. Der Dozent sagt, dass das wunderbar nah am Erwartungswert (8) ist, und dass man ihn in Ruhe lassen sollte. Ist er zu streng?
 
 Berechnen Sie den $z$-Test:
 
-code_hier
+``` {r}
+z.n20 <- sqrt(20) * ((7 - 8)/ 3)
+print(z.n20)
 
-Das ist ein **_eins_von_signifikanter_insignifikanter_** Unterschied. 
+```
+
+Das ist ein **_insignifikanter_** Unterschied, da 1.49<1.55 (Nullhypothese wird damit abgelehnt)
 
 Später ergibt sich, dass es eigentlich 25 Studenten im Kurs gab. (Der Dozent hat "einen Tippfehler" gemacht, als er seine Teilnehmerzahl per Mail an die Verwaltung geschickt hat.) Der Durchschnittswert bleibt -- behauptet der Dozent -- immer noch bei 7. Er behauptet weiterhin, dass das wunderbar nah am Erwartungswert (8) ist, und dass man ihn in Ruhe lassen sollte. Ist er zu streng?
 
 Berechnen Sie den $z$-Test:
 
-code_hier
+``` {r}
+z.n25 <- sqrt(25) * ((7 - 8)/ 3)
+print(z.n25)
 
-Das ist ein **_eins_von_signifikanter_insignifikanter_** Unterschied. 
+```
+
+Das ist ein **_signifikanter_** Unterschied, da 1.66>1.55 (Nullhypothese wird beibehalten).
 
 ## Zum Überlegen
 Gibt es einen Grund, weshalb die Noten normal verteilt sein sollten? Warum ist das die übliche Annahme?
