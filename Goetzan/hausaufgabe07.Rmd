@@ -169,12 +169,14 @@ Um in dem besten 1% abzuschließen, muss man zumindest `r qnorm(0.99,mean=mu,sd=
 ## z-Transformation
 Bei der Überprüfung der Lehrqualität scheint es der Verwaltung, dass ein gewisser Dozent andere Noten als andere Dozenten vergibt. Es wird entschieden, dass der Notenspiegel bei den Teilnehmern in einem von seinen Kursen getestet wird, um zu schauen, ob er sich signifikant von der idealisierten Notenverteilung ($\mu=8,\sigma=3$) unterscheidet. Um zu zeigen, dass Gott $\alpha=0.06$ so viel liebt wie $\alpha=0.05$ `r citep("10.1037/0003-066X.44.10.1276")`, setzt die Verwaltung das Signikanzniveau auf 0.06. 
 
-Der kritische Wert für einen einseitigen $z$-Test ist `r qnorm(0.94)`.
+Der kritische Wert für einen einseitigen $z$-Test ist (bei Aplha=0,06) `r qnorm(0.94)` (bei Alpha=0,05) `r qnorm(0.95)`.
 
-Die kritischen Werte für einen zweiseitigen $z$-Test sind $\pm$`code_hier`.
+Die kritischen Werte für einen zweiseitigen $z$-Test sind (bei Aplha=0,06) $\pm$ `r qnorm(0.97)` (bei Alpha=0,05) $\pm$ `r qnorm(0.975)`.
 
 ### Gibt es einen Unterschied?
 Bei diesem Dozenten ist die Verwaltung wirklich unsicher, ob und was für einen Unterschied es geben könnte. (Welche Testart sollte man hier nutzen?)
+
+Bei Unsicherheiten ist es besser einen zweiseitigen z-Test auszuführen, da sonst die der Fehler gemacht werden kann, dass die Hypothese abgelehnt wird obwohl sie richtig ist.
 
 In einem kleinen Seminar mit 7 Studenten beträgt der Durchschnittswert 10. Unterscheidet sich der Notenspiegel von dem idealen? Berechnen Sie den $z$-Test:
 
