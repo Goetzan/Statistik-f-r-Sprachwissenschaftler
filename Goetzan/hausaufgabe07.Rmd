@@ -94,11 +94,11 @@ for(s in c(3,4,5) ){
 
 Wie steht die Anzahl guter Noten in Beziehung zur Anzahl schlechter Noten? 
 
-Vorformulierung: mehr prozent durchfallen (größere Anzahl) als mit sehr guter Leistung abschließen, steigt mit zunehmender SD an. Doppelte Anzahl an Note die in die Berechnung einfließen bei 13-15 im vergleich zu 0-5 punkte
+Es sind mehr (doppelt soviele) schlechte Noten (0-5 Notenpunkte), als gute Noten(nur 13-15 Notenpunkte) in die Berechnung mit eingeflossen. Aus diesesm Grund ist die Durchfallquote höher.
 
 Warum?
 
-Vorformuierung: mehr Noten werde betrachtet zum durchfallen als für gute Noten
+Da es möglich ist insgesamt mehr schlechte Noten zu erhalten, als Gute ist das Verhältnis und die Berechnung nicht ausgewogen. Um ein einheitlicheres und dmait vergleichbares Ergebnis zu erzielen müssten beispielsweise nur die 1er (13-15 NP) mit den 5ern (1-3) verglichen werden.
 
 ## Kurtosis und Schiefe
 Kurtosis (im Deutschen auch *Wölbung*) ist ein Maß dafür, wie spitz eine Verteilung ist. Die Normalverteilung wird nie zu extrem spitz -- der Gipfel bleibt immer schön rund, obwohl er manchmal eng wird. Andere Verteilungen (z.B. die Laplace-Verteilung ) haben Gipfel, die nicht rund sind.   
