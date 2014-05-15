@@ -77,9 +77,15 @@ subj.2.rt <- rt[rt$subj == "2", "RT"]
 
 var.test(subj.1.rt, subj.2.rt)
 
+# alternativ:
+
+rt.beide <- rt[rt$subj == "1" | rt$subj == "2", c("subj", "RT")]
+var.test(rt.beide$RT ~ rt.beide$subj)
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # F-Test "Varianzen Ungleich" ist.
+# Da der P-Wert 0,04<0,05 ist wird die Nullhypothese abgelehnt.
+# D.h. die Varianzen sind homogen verteilt.
 
 # Berechenen Sie den Levene Test:
 #print(CODE_HIER)
