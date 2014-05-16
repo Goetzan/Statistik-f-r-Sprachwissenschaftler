@@ -84,9 +84,7 @@ var.test(rt.beide$RT ~ rt.beide$subj)
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # F-Test "Varianzen Gleich" ist.
-# Da der P-Wert 0,04< Signifikanzniveau von 0,05 ist wird die Nullhypothese abgelehnt
-# (die Varianzen haben nicht das Ergebnis 1, dh sie sind in diesem Test nicht homogen
-# verteilt).
+# Da der P-Wert 0,04< Signifikanzniveau von 0,05 ist sind die Daten (nicht?) homogen gestreut.
 
 # Berechenen Sie den Levene Test:
 leveneTest(rt.beide$RT ~ rt.beide$subj)
@@ -133,7 +131,7 @@ if (shapiro$p.value > 0.05){
 # Berechnen Sie Shapiro's Test für die andere Versuchsperson und drücken Sie mit
 # einem if-Block aus, ob die Daten normal verteilt sind.
 
-shapira <- shapiro.test(subj.2.rt)
+shapiro <- shapiro.test(subj.2.rt)
 print(shapiro)
 
 if (shapiro$p.value > 0.05){
@@ -145,17 +143,25 @@ if (shapiro$p.value > 0.05){
 # Wir haben auch Transformationen bei schiefen Datenverteilungen angesprochen.
 # Die logaritmische Verteilung ist ziemlich beliebt bei Reaktionszeitsdaten.
 
-# rt$logRT <- log(rt$RT)
-# print(summary(rt$logRT))
-# logrt.plot <- CODE_HIER
-# print(logrt.plot)
+rt$logRT <- log(rt$RT)
+print(summary(rt$logRT))
+logrt.plot <- qplot(x=rt$logRT,color=subj,fill=subj,data=rt, geom="density",alpha=I(0.3))
+print(logrt.plot)
 
 # Sieht die Verteilung besser aus? Sind die Varianzen "homogener" geworden? 
 # Berechnen Sie den F-Test und den Levene-Test für die logaritmisch skalierten 
 # Daten. Nach jedem Test sollten Sie auch programmatisch (=durch if-Blöcke)
 # ausdrücken, ob die Varianzen homogen sind.
 
-# CODE_HIER
+subj.1.logrt <- rt[rt$subj == "1", "logRT"]
+subj.2.logrt <- rt[rt$subj == "2", "logRT"]
+fisher <- var.test(subj.1.logrt, subj.2.logrt)
+
+if (fisher$p.value > 0.05){
+  print("F-test insignifikant, die Daten sind nicht homogen verteilt.")
+}else{
+  print("F-test signifikant, die Daten sind homogen verteilt.")
+}
 
 # Sind die Daten "normaler" gewordern? Berechnen Sie den Shapiro-Test für beide 
 # Gruppen. Nach jeder Gruppe sollten Sie auch programmatisch (=durch if-Blöcke)
