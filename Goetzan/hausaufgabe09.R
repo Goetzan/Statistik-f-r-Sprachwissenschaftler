@@ -83,32 +83,39 @@ rt.beide <- rt[rt$subj == "1" | rt$subj == "2", c("subj", "RT")]
 var.test(rt.beide$RT ~ rt.beide$subj)
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
-# F-Test "Varianzen Ungleich" ist.
-# Da der P-Wert 0,04<0,05 ist wird die Nullhypothese abgelehnt.
-# D.h. die Varianzen sind homogen verteilt.
+# F-Test "Varianzen Gleich" ist.
+# Da der P-Wert 0,04< Signifikanzniveau von 0,05 ist wird die Nullhypothese abgelehnt
+# (die Varianzen haben nicht das Ergebnis 1, dh sie sind in diesem Test nicht homogen
+# verteilt).
 
 # Berechenen Sie den Levene Test:
-#print(CODE_HIER)
+leveneTest(rt.beide$RT ~ rt.beide$subj)
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # Levene Test "Varianzen Gleich" ist.
+# Die Populationsvarianzen unterscheiden sich nicht signifikant von einander
+# (da pr= 0.37 und damit höher als das Signifikanzniveau von 0,05). Die
+# Nullhypothese kann beibehalten werden, dh. Varianzen sind Gleich verteilt.
 
 # Für heterogene Varianzen haben wir eine Variante des  t-Tests gesehen, die
 # eine Korrektur der Freiheitsgerade macht. Bei homogener Varianz sollten beide
 # Variante ähnliche bzw. (fast) gleiche Ergebnisse liefern. Ist das hier der
 # Fall?
-# two.sample <- CODE_HIER
-# welch <- CODE_HIER
 
-# print(two.sample)
-# print(welch)
+two.sample <- t.test(subj.1.rt, subj.2.rt, var.equal=TRUE)
+welch <- t.test (subj.1.rt, subj.2.rt)
+
+print(two.sample)
+print(welch)
+
+# Das Ergebnis dieser beiden Tests ist sehr ähnlich, somit haben eine homogene Varianz
 
 # Das Ergebnis der verschiedenen Test-Funktionen in R ist übrigens eine Liste.
 # Wir können das ausnutzen, um zu schauen, ob es einen Unterschied zwischen den
 # beiden Testverfahren gab. Wenn die Varianz homogen war, sollten wir keinen
 # Unterschied sehen:
-# t.diff <- welch$statistic - two.sample$statistic
-# print(paste("Die Differenz zwischen den beiden t-Werten ist",t.diff,"."))
+t.diff <- welch$statistic - two.sample$statistic
+print(paste("Die Differenz zwischen den beiden t-Werten ist",t.diff,"."))
 
 # Sind die Daten normal verteilt? Wir berechnen Sie den Shapiro Test für erste Versuchsperson:
 # shapiro <- shapiro.test(rt[rt$subj==1,"RT"])
