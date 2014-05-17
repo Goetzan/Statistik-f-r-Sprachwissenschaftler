@@ -184,10 +184,12 @@ if (shapiro.2$p.value > 0.05){
   print("Shaptiro´s test ist signifikant, die Daten sind nicht normalverteilt")
 }
 
-
 # Hat die logarithmische Transformation insgesamt geholfen? Berechnen Sie zum
 # Schluss den (Welch) t-Test für die logarithmischen Daten. Bekommen Sie das
 # gleiche Ergebnisse wie bei den Ausgangsdaten?
 
 logt.test <- t.test(subj.1.logrt, subj.2.logrt)
 print(logt.test)
+
+# Dieser Test hat gezeigt, dass im Vergleich sich nicht die gleichen p-Werte ergeben.
+# Ohne den Logarithmus lag der p-Wert bei 0,0037, mit diesem bei 0,0241.
