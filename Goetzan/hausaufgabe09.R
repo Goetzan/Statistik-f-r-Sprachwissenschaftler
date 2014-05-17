@@ -84,7 +84,8 @@ var.test(rt.beide$RT ~ rt.beide$subj)
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # F-Test "Varianzen Gleich" ist.
-# Da der P-Wert 0,04< Signifikanzniveau von 0,05 ist sind die Daten (nicht?) homogen gestreut.
+# Da der P-Wert 0,04< Signifikanzniveau von 0,05 ist sind die Daten nicht homogen gestreut.
+# Die Nullhypothese kann zurückgewiesen werden.
 
 # Berechenen Sie den Levene Test:
 leveneTest(rt.beide$RT ~ rt.beide$subj)
@@ -158,9 +159,9 @@ subj.2.logrt <- rt[rt$subj == "2", "logRT"]
 fisher <- var.test(subj.1.logrt, subj.2.logrt)
 
 if (fisher$p.value > 0.05){
-  print("F-test insignifikant, die Daten sind nicht homogen verteilt.")
+  print("F-test insignifikant, die Daten sind homogen verteilt.")
 }else{
-  print("F-test signifikant, die Daten sind homogen verteilt.")
+  print("F-test signifikant, die Daten sind nicht homogen verteilt.")
 }
 
 # Sind die Daten "normaler" gewordern? Berechnen Sie den Shapiro-Test für beide 
@@ -168,10 +169,25 @@ if (fisher$p.value > 0.05){
 # ausdrücken, ob die Daten normal verteilt sind. 
 # (Für die fortgeschrittenen: hier könnte man auch eine for-Schleife nutzen...)
 
-# CODE_HIER
+shapiro.1 <- shapiro.test(subj.1.logrt)
+
+if (shapiro.1$p.value > 0.05){
+  print ("Shapiro´s test ist insignifikant, die Daten sind normalverteilt.") 
+}else{
+  print("Shaptiro´s test ist signifikant, die Daten sind nicht normalverteilt")
+}
+
+shapiro.2 <- shapiro.test(subj.2.logrt)
+if (shapiro.2$p.value > 0.05){
+  print ("Shapiro´s test ist insignifikant, die Daten sind normalverteilt.") 
+}else{
+  print("Shaptiro´s test ist signifikant, die Daten sind nicht normalverteilt")
+}
+
 
 # Hat die logarithmische Transformation insgesamt geholfen? Berechnen Sie zum
 # Schluss den (Welch) t-Test für die logarithmischen Daten. Bekommen Sie das
 # gleiche Ergebnisse wie bei den Ausgangsdaten?
 
-# CODE_HIER
+logt.test <- t.test(subj.1.logrt, subj.2.logrt)
+print(logt.test)
