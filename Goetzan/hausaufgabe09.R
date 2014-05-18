@@ -154,6 +154,7 @@ print(logrt.plot)
 # Daten. Nach jedem Test sollten Sie auch programmatisch (=durch if-Blöcke)
 # ausdrücken, ob die Varianzen homogen sind.
 
+# F-test
 subj.1.logrt <- rt[rt$subj == "1", "logRT"]
 subj.2.logrt <- rt[rt$subj == "2", "logRT"]
 fisher <- var.test(subj.1.logrt, subj.2.logrt)
@@ -163,6 +164,18 @@ if (fisher$p.value > 0.05){
 }else{
   print("F-test signifikant, die Daten sind nicht homogen verteilt.")
 }
+
+# Levene´s test
+logrt.beide <- rt[rt$subj == "1" | rt$subj == "2", c("subj", "logRT")]
+levene <- leveneTest(logrt.beide$logRT ~ logrt.beide$subj)
+print(levene)
+
+#if (levene$p.value > 0.05){
+#  print("Levene´s test insignifikant, die Daten sind homogen verteilt.")
+#}else{
+#  print("Levene´s test signifikant, die Daten sind nicht homogen verteilt."}  
+#}
+# Fehler, es wird durch den if-Block kein Wert angezeigt. Kein eigentlicher p-Wert?
 
 # Sind die Daten "normaler" gewordern? Berechnen Sie den Shapiro-Test für beide 
 # Gruppen. Nach jeder Gruppe sollten Sie auch programmatisch (=durch if-Blöcke)
