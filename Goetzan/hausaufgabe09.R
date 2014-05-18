@@ -205,4 +205,5 @@ logt.test <- t.test(subj.1.logrt, subj.2.logrt)
 print(logt.test)
 
 # Dieser Test hat gezeigt, dass im Vergleich sich nicht die gleichen p-Werte ergeben.
-# Ohne den Logarithmus lag der p-Wert bei 0,0037, mit diesem bei 0,0241.
+# Ohne den Logarithmus lag der p-Wert bei 0,0037, mit diesem bei 0,0241. jedoch sind 
+# beide noch signifikant.
