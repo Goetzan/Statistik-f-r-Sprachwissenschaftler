@@ -196,7 +196,7 @@ Es gibt keine statistische Basis, nach der wir entscheiden können, welchen Fakt
 
 Bei der Studie hier haben wir als Fragestellung für das Gesamtexperiment, ob Priming gleich gut sprachübergreifend als sprachintern funktioniert. Wenn wir überlegen, wie wir die Interaktion auflösen möchten, können wir uns weitere (Unter)Fragestellungen vorstellen:
 
-1. *Hat die Sprache des Primes eine Auswirkung auf die Stärke des Priming-Effekts?* In diesem Fall wollen wir dann `target` festhalen bzw. auflösen, damit wir `prime` noch variieren können, d.h. die Wirkung von `prime` unter gewissen Umständen (Zielsprache) untersuchen.
+1. *Hat die Sprache des Primes eine Auswirkung auf die Stärke des Priming-Effekts?* In diesem Fall wollen wir dann `target` festhalten bzw. auflösen, damit wir `prime` noch variieren können, d.h. die Wirkung von `prime` unter gewissen Umständen (Zielsprache) untersuchen.
 2. *Hat die Sprache des Targets eine Auswirkung auf die Stärke des Priming-Effekts?*  In diesem Fall wollen wir dann `prime` festhalen bzw. auflösen, damit wir `target` noch variieren können, d.h. die Wirkung von `target` unter gewissen Umständen (Priming-Sprache) untersuchen.
 
 Hier möchte ich wissen, ob Primes in der Fremdsprache die gleiche Wirkung haben wie Primes in der Muttersprache. Das heißt, ich möchte `prime` variieren, ich muss also `target` stufenweise festhalten bzw. auflösen.
@@ -232,7 +232,19 @@ print(xtable(priming.f1.englisch.target$ANOVA
 # Deutsches Target
 Führen Sie die entsprechende Analyse für deutsches Target aus.
 
-CODE_BLOCK_HIER
+```{r, results='asis'}
+priming.f2.deutsch.target <- ezANOVA(subset(priming, target == "D")
+                                      , dv=.(RT)
+                                      , wid=.(subj)
+                                      , within=.(prime)
+                                      , detailed=TRUE
+                                      )
+print(xtable(priming.f2.deutsch.target$ANOVA
+             , display=c("s","s","d","d","f","f","f","fg","s","g")
+             , digits=c(0,0,0,0,2,2,2,2,0,2))
+      ,type="html",include.rownames=FALSE)
+
+```
 
 
 # Lizenz
