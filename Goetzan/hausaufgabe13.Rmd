@@ -116,8 +116,10 @@ print(xtable(priming.by.item.wide1),type="html",include.rownames=FALSE)
 
 Und *eine* passende Grafik für die Daten by Item sollten wir auch generieren:
 
-CODE_BLOCK_HIER
-
+```{r}
+ggplot(data = priming.by.item) + geom_jitter(aes(x = cond, y = RT, color = cond, 
+    fill = cond), alpha = 0.5)
+```
 Sehen die Daten by Subject und by Item gleich aus? Wie sehen sie im Vergleich zu den Single-Trial-Daten aus?
 
 # Subject- und Item-Analysen
