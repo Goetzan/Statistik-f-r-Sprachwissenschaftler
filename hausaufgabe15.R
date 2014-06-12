@@ -31,7 +31,7 @@
 # finden kann: 
 # Session > Set Working Directory > Source File Location
 
-# (Im folgenden müssen Sie die Code-Zeilen wieder aktiv setzen -- ich habe sie
+# (Im Folgenden müssen Sie die Code-Zeilen wieder aktiv setzen -- ich habe sie
 # vorläufig auskommentiert, damit der Output beim ersten Beispiel sehr
 # überschaubar war.)
 
@@ -77,7 +77,7 @@ print(summary(m3))
 # Hat sich der R^2 Wert geändert? Die t-Werte? Die Koeffizienten? Was ist die
 # Beziehung zwischen diesem Modell und m2?
 
-# Wie sieht es aus mit den Daten zum Kursteilnehmern? Plotten Sie und berechnen
+# Wie sieht es aus mit den Daten zu den Kursteilnehmern? Plotten Sie und berechnen
 # Sie ein Modell für das Gewicht der Teilnehmer als Funktion von Körpergröße.
 
 body.metric <- body
