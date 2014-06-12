@@ -63,3 +63,39 @@ Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Au
 
 # Lizenz
 Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+
+# Analyse: Überlegungen
+1. Was bestimmt den Preis von Diamenten
+- Preis ist hier die abhängige Variable, da diese sich in Abhängigkeit zu den unabhängigen Variablen verändert
+- Preis/ Geld ist dabei eine Ratio-Skala, damit ist eine Bedingung erfüllt.
+- für die Darstellung diese Abhändigkeit würde sich eine lineare Regression anbieten
+
+```{r]}
+# Lineare Regression
+lm.1 <- lm(price~carat, data=diamonds)
+summary(lm.1)
+# der Standardfehler ist bei diesem Modell noch sehr hoch (1549), daher passt das Modell noch nicht sehr gut (es wird noch nicht genügend durch das Modell erklärt)
+
+ggplot(diamonds, aes(x=carat, y=price, color=color)) + geom_point(alpha=0.3) + geom_smooth(method="lm")
+
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~color) + geom_smooth(method="lm")
+
+# mit 2 unabhängigen Variablen
+lm.2 <- lm(price~carat* clarity, data=diamonds)
+summary(lm.2)
+# Der Standardfehler ist kleiner geworden (1206), d.h es wird ein bisschen mehr in diesem Modell erklärt
+
+# mit 3 unabhängigen Variablen
+lm.3 <- lm(price~carat*clarity*cut, data=diamonds)
+summary(lm.3)
+# nun wird aber der Output sehr unübersichtlich, Lösung ANOVA?
+
+anova.1 <- aov(price~carat*clarity, data=diamonds)
+summary(anova.1)
+
+anova.2 <- aov(price~carat*clarity*cut, data=diamonds)
+summary(anova.2)
+
+
+```
+
