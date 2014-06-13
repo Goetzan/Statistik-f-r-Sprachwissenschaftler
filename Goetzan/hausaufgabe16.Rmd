@@ -66,9 +66,11 @@ Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
 
 # Analyse: Überlegungen
 1. Was bestimmt den Preis von Diamenten
-- Preis ist hier die abhängige Variable, da diese sich in Abhängigkeit zu den unabhängigen Variablen verändert
+- Preis ist hier die abhängige Variable, da diese sich in Abhängigkeit zu den unabhängigen Variablen (cut,carat) verändert
 - Preis/ Geld ist dabei eine Ratio-Skala, damit ist eine Bedingung erfüllt.
-- für die Darstellung diese Abhändigkeit würde sich eine lineare Regression anbieten
+- da wir eine große Stichprobe haben, ist die ANOVA gegen die Annahme der Varianzhomogenität robust.
+- für die Darstellung diese Abhängigkeit würde sich eine lineare Regression anbieten
+
 
 ```{r]}
 # Lineare Regression
@@ -88,13 +90,21 @@ summary(lm.2)
 # mit 3 unabhängigen Variablen
 lm.3 <- lm(price~carat*clarity*cut, data=diamonds)
 summary(lm.3)
-# nun wird aber der Output sehr unübersichtlich, Lösung ANOVA?
+# nun wird aber der Output sehr unübersichtlich, Lösung mehrfaktorielle ANOVA?
 
 anova.1 <- aov(price~carat*clarity, data=diamonds)
 summary(anova.1)
 
 anova.2 <- aov(price~carat*clarity*cut, data=diamonds)
 summary(anova.2)
+
+anova.3 <- aov(price~carat*clarity*cut*x, data=diamonds)
+summary(anova.3)
+
+# ohne die Interaktioneffekte
+
+anova.4 <- aov(price ~ carat + clarity + cut + color, data=diamonds)
+summary(anova.4)
 
 
 ```
