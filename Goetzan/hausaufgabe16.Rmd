@@ -28,6 +28,8 @@ Bisher haben Sie von mir mehr oder weniger vollständige Analysen bekommen, bei 
 
 ```{r, eval=FALSE}
 ?diamonds
+summary(diamonds)
+head(diamonds)
 ```
 <div style="border: 2px solid black; padding: 5px; font-size: 80%;">
 ```{r, echo=FALSE, results='asis'}
@@ -61,8 +63,6 @@ ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~c
 # Noch eine Überlegung
 Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
 
-# Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
 
 # Analyse: Überlegungen
 1. Was bestimmt den Preis von Diamenten
@@ -76,36 +76,77 @@ Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
 # Lineare Regression
 lm.1 <- lm(price~carat, data=diamonds)
 summary(lm.1)
-# der Standardfehler ist bei diesem Modell noch sehr hoch (1549), daher passt das Modell noch nicht sehr gut (es wird noch nicht genügend durch das Modell erklärt)
+# der Standardschätzfehler ist bei diesem Modell noch sehr hoch (1549), daher passt das Modell noch nicht sehr gut (es wird noch nicht genügend durch das Modell erklärt)
 
+# mit color=color
 ggplot(diamonds, aes(x=carat, y=price, color=color)) + geom_point(alpha=0.3) + geom_smooth(method="lm")
-
 ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~color) + geom_smooth(method="lm")
+
 
 # mit 2 unabhängigen Variablen
 lm.2 <- lm(price~carat* clarity, data=diamonds)
 summary(lm.2)
-# Der Standardfehler ist kleiner geworden (1206), d.h es wird ein bisschen mehr in diesem Modell erklärt
+# Der Standardschätzfehler ist kleiner geworden (1206), d.h es wird ein bisschen mehr in diesem Modell erklärt
 
-# mit 3 unabhängigen Variablen
-lm.3 <- lm(price~carat*clarity*cut, data=diamonds)
+# mit 6 unabhängigen Variablen
+lm.3 <- lm(price~carat+clarity+cut+color+depth+table, data=diamonds)
 summary(lm.3)
-# nun wird aber der Output sehr unübersichtlich, Lösung mehrfaktorielle ANOVA?
+# Der Standardschätzfehler ist nochmals kleiner geworden, d.h. das Modell passt noch besser zu den Daten, erklärt aber immer noch nicht alles.
+```
+Interpretation der Ergebnisse: 
+Der multiple R-squared beschreibt dabei den Effekt, dass die Prädiktoren (carat, clarity,...) 91.61% der Varianz erklären. Des Weiteren wird deutlich, dass sowohl carat, clarity (außer clarity^6), cut (außer cut^4), color (außer color^4) sehr stark den Preis beeinflussen.
 
+
+```{r}
 anova.1 <- aov(price~carat*clarity, data=diamonds)
 summary(anova.1)
 
 anova.2 <- aov(price~carat*clarity*cut, data=diamonds)
 summary(anova.2)
 
-anova.3 <- aov(price~carat*clarity*cut*x, data=diamonds)
+anova.3 <- aov(price~carat*clarity*cut*table*depth, data=diamonds)
 summary(anova.3)
 
 # ohne die Interaktioneffekte
 
-anova.4 <- aov(price ~ carat + clarity + cut + color, data=diamonds)
+anova.4 <- aov(price ~ carat + clarity + cut + color + depth + table, data=diamonds)
 summary(anova.4)
-
 
 ```
 
+Die Ergebnisse der mehrfaktoriellen ANOVA ohne Messwiederholung zeigen, dass sich die mittleren Werte der Faktoren statistisch bedeutsam von dem Preis unterscheiden.
+
+Weitere Überlegungen:
+- Warum weist clarity^6 keine statistisch signifikanten Abhängigkeit zum Preis auf?
+- Ebenso cut^4 und color^4?
+- dazu zuersmalt eine Grafik
+
+```{r}
+#mit price~clarity
+ggplot(diamonds, aes(x=carat, y=price, color=clarity)) + geom_point(alpha=0.3) + geom_smooth(method="lm")
+ggplot(diamonds,aes(x=carat,y=price,color=clarity)) + geom_point() + facet_wrap(~clarity) + geom_smooth(method="lm")
+
+price.clarity <- lm(price~clarity, data=diamonds)
+summary(price.clarity)
+
+# price~cut
+ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point(alpha=0.3) + geom_smooth(method="lm")
+ggplot(diamonds,aes(x=carat,y=price,color=cut)) + geom_point() + facet_wrap(~cut) + geom_smooth(method="lm")
+
+price.cut <- lm(price~cut, data=diamonds)
+summary(price.cut)
+# das ist seltsam, jetzt wird ausgegeben, dass jeder cut einen signifikaten Einfluss auf den Preis hat. Bei diese Analyse (summary(lm(price~carat+clarity+cut+color+depth+table, data=diamonds))) ist herausgekommen, dass cut^4 keinen signifikaten Einfluss auf den Preis hat. Wo liegt der Fehler?
+
+# price~color
+ggplot(diamonds, aes(x=carat, y=price, color=color)) + geom_point(alpha=0.3) + geom_smooth(method="lm")
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~color) + geom_smooth(method="lm")
+
+price.color <- lm(price~color, data=diamonds)
+summary(price.color)
+#wieder ein seltsames Ergebnis, zwar ist auch wie in der obigen Rechnung color^4 nicht signifikant, aber beeinflusst ebenfalls color^6 nicht den Preis nicht in dem Maße wie es die anderen tun...
+```
+Ergebnis: Ich kann mir die Abweichungen nicht erklären zwischen der einen und der anderen Rechnung. Jedesmal ist Preis die abhängige Variable und die Methode ist die gleiche. Des Weiteren weiß ich nicht ganz genau was R beispielsweise mit color^4 meint.
+
+# Lizenz
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Diese Datei darf weiter als Beispiel genutzt werden.
