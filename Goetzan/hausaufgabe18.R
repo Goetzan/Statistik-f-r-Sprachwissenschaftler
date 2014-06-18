@@ -1,7 +1,8 @@
 # Hausaufgabe 18
-# Phillip Alday <phillip.alday@staff.uni-marburg.de>
-# 2014-06-17
+# Antonia Götz <Goetzan@students.uni-marburg.de>
+# 2014-06-18
 # Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+# Diese Datei darf weiter als Beispiel verwendet werden.
 
 
 # Die nächsten Punkte sollten ziemlich automatisch sein...
